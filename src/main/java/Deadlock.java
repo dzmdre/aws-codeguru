@@ -1,11 +1,11 @@
 public class Deadlock {
-    private Object process = new Object();
-    private boolean stopped = true;
+   // private Object process = new Object();
+    private volatile boolean stopped = true;
 
-    public void run() {
-        synchronized (process) {
+    public synchronized void run() {
+//        synchronized (process) {
             isStopped();
-        }
+//        }
     }
 
     private synchronized boolean isStopped() {
@@ -13,9 +13,9 @@ public class Deadlock {
     }
 
     public synchronized void stopProcess() {
-        synchronized (process) {
+//        synchronized (process) {
             System.out.println("Stopping...");
-        }
+//        }
     }
 
     public static void main(String args[]) throws InterruptedException {
